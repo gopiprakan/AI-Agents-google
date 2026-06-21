@@ -1,10 +1,10 @@
 import os
 import random
-import numpy as np
 
-# Try importing OpenCV and Ultralytics YOLO
+# Try importing OpenCV, NumPy and Ultralytics YOLO
 try:
     import cv2
+    import numpy as np
     import torch
     from ultralytics import YOLO
     ULTRALYTICS_AVAILABLE = True

@@ -5,11 +5,10 @@ redis==5.0.7
 pyjwt==2.8.0
 bcrypt==4.1.3
 python-multipart==0.0.9
-numpy==1.26.4
-opencv-python==4.10.0.84
 pydantic==2.7.4
 pydantic-settings==2.3.4
 websockets==12.0
-# psycopg2-binary==2.9.9 is installed automatically in Docker
-# but bypassed locally on Windows to support SQLite out-of-the-box
+# psycopg2-binary, numpy, and opencv-python are installed inside Docker
+# but bypassed locally on Windows to support instant SQLite out-of-the-box
+
 
