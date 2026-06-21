@@ -1,0 +1,20 @@
+# Integrated Smart City Traffic Solutions (ISCTS)
+# YOLOv8 Custom Dataset Configuration
+
+# Path relative to workspace or absolute paths
+path: ../datasets  # dataset root dir
+train: train/images  # train images (relative to path) 
+val: val/images      # val images (relative to path)
+test: test/images    # test images (optional)
+
+# Number of classes
+nc: 6
+
+# Class names mapping
+names:
+  0: Car
+  1: Bus
+  2: Bike
+  3: Truck
+  4: Auto
+  5: Ambulance

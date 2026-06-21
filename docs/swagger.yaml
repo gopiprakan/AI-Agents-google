@@ -1,0 +1,118 @@
+openapi: 3.0.0
+info:
+  title: Integrated Smart City Traffic Solutions (ISCTS) API
+  version: 1.0.0
+  description: REST and WebSocket telemetry API specification for the AI-powered municipal smart city traffic signal override network.
+paths:
+  /api/auth/login:
+    post:
+      summary: Session validation login
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                password:
+                  type: string
+      responses:
+        '200':
+          description: Return token payloads
+  /api/auth/register:
+    post:
+      summary: Admin registration portal
+      security:
+        - OAuth2: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                email:
+                  type: string
+                password:
+                  type: string
+                role:
+                  type: string
+                full_name:
+                  type: string
+      responses:
+        '200':
+          description: Created user details
+  /api/signal/junctions:
+    get:
+      summary: Get active traffic light junctions
+      responses:
+        '200':
+          description: Array of junction telemetry states
+  /api/signal/override:
+    post:
+      summary: Force Priority override
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                ambulance_id:
+                  type: string
+                junction_id:
+                  type: string
+                lane:
+                  type: string
+                duration_seconds:
+                  type: integer
+      responses:
+        '200':
+          description: Override activated
+  /api/signal/override/clear:
+    post:
+      summary: Clear active override lock
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                junction_id:
+                  type: string
+      responses:
+        '200':
+          description: Override cleared successfully
+  /api/detect:
+    post:
+      summary: Process camera feed
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                camera_id:
+                  type: string
+                junction_id:
+                  type: string
+                lane:
+                  type: string
+                file:
+                  type: string
+                  format: binary
+      responses:
+        '200':
+          description: Detected bounding boxes and emergency check indicators
+  /api/analytics/summary:
+    get:
+      summary: Cumulative density metrics
+      responses:
+        '200':
+          description: Yields counts and vehicle categories distribution
