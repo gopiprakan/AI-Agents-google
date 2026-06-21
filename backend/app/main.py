@@ -63,3 +63,17 @@ def startup_event():
     loop = asyncio.get_event_loop()
     loop.create_task(traffic_simulation_loop())
     print("ISCTS Systems fully online and simulation loop scheduled.")
+
+# Single-Container Cloud Hosting support
+# Serves the compiled React frontend static assets directly from the API container
+import os
+from fastapi.staticfiles import StaticFiles
+
+# Resolve path to compiled frontend
+frontend_dist_dir = os.path.abspath(os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "frontend", "dist"))
+if os.path.exists(frontend_dist_dir):
+    app.mount("/", StaticFiles(directory=frontend_dist_dir, html=True), name="frontend")
+    print(f"Cloud Deployment: Serving static frontend client from {frontend_dist_dir}")
+else:
+    print("Local Dev: Frontend static distribution folder not compiled yet. Serving API routes only.")
+
