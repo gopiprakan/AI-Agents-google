@@ -95,7 +95,6 @@ To run automated Python unit tests asserting database tables seeding, authentica
 ```bash
 cd backend
 python -m unittest discover -s ../tests -p "test_*.py"
-```
 
 ---
 
