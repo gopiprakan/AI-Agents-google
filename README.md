@@ -31,7 +31,6 @@ sequenceDiagram
     end
     Backend->>WS: Broadcast TELEMETRY_UPDATE packet
     WS->>Officer: Render charts, map congestion nodes, & countdown timers
-```
 
 ---
 
